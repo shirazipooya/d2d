@@ -47,7 +47,7 @@ services:
   
   pgadmin:
     container_name: D2D-pgAdmin
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:8.5
     restart: always
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
@@ -57,7 +57,7 @@ services:
 
   adminer:
     container_name: D2D-Adminer
-    image: adminer:latest
+    image: adminer:4.8.1
     restart: always
     depends_on:
       - postgres
