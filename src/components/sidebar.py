@@ -8,10 +8,10 @@ def sidebar():
     return html.Div(className='position-sticky', children=[
         html.Ul(className='nav flex-column', children=[
             html.Li(className='nav-item', children=[
-                dbc.NavLink(html.H5([html.I(className="bi bi-house me-2"), "Home"]), href=HOME_PAGE_URL, active="exact"),
+                dbc.NavLink(html.H6([html.I(className="bi bi-house me-2"), "Home"]), href=HOME_PAGE_URL, active="exact"),
             ]),
             html.Li(className='nav-item', children=[
-                dbc.NavLink(html.H5([html.I(className="bi bi-cloud-arrow-down me-2"), "Download"]), href=DOWNLOAD_PAGE_URL, active="exact")
+                dbc.NavLink(html.H6([html.I(className="bi bi-cloud-arrow-down me-2"), "Download"]), href=DOWNLOAD_PAGE_URL, active="exact")
             ]),
         ])
     ])

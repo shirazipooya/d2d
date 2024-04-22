@@ -4,10 +4,12 @@ from flask import Flask
 import dash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 from dash_dangerously_set_inner_html import DangerouslySetInnerHTML
 from dotenv import load_dotenv
 
 from src.components import sidebar
+
 
 # Load Environment Variables
 load_dotenv(".env")
@@ -52,7 +54,7 @@ def app_layout():
     return html.Div(className='container-fluid px-0', children=[
         html.Nav(className='navbar navbar-light bg-light px-3 py-1', children=[
             html.Div(className='d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between align-items-center', children=[
-                html.H3(className='navbar-brand p-0 m-0 py-3 pl-3', children=["Data to Decisions Dashboard"]),
+                html.H6(className='p-0 m-0 py-2 pl-3', children=["D2D Dashboard"]),
                 DangerouslySetInnerHTML('''
                     <button class="navbar-toggler d-md-none collapsed my-2" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -66,7 +68,7 @@ def app_layout():
                     sidebar.sidebar()
                 ]),
                 html.Div(className='col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4', children=[
-                    dash.page_container
+                    dash.page_container,
                 ])
             ])
         ])

@@ -1,5 +1,7 @@
 import dash
 from dash import html
+import dash_mantine_components as dmc
+
 
 
 dash.register_page(
@@ -11,8 +13,5 @@ dash.register_page(
 
 
 layout = html.Div(
-    [
-        html.H1('Hello Home Page!!!'),
-        html.Div('Dash: A web application framework for Python.'),
-    ]
+
 )
