@@ -1,8 +1,9 @@
-FROM python:3.12.2-alpine
-
+FROM python:3.10.14
 WORKDIR /D2D
 
 COPY ./requirements.txt requirements.txt
+
+RUN python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 

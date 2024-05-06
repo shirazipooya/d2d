@@ -15,25 +15,25 @@ dash.register_page(
 
 layout = html.Div(
     [
-        dmc.Tabs(
-            [
-                dmc.TabsList(
-                    position="left",
-                    grow=False,
-                    children=[
-                        dmc.Tab("Meteomanz.com", value="gallery"),
-                        dmc.Tab("Messages", value="messages"),
-                        dmc.Tab("Settings", value="settings"),
-                    ]
-                ),
-                dmc.TabsPanel("Gallery tab content", className="py-3 px-1", value="gallery"),
-                dmc.TabsPanel("Messages tab content", className="py-3 px-1", value="messages"),
-                dmc.TabsPanel("Settings tab content", className="py-3 px-1", value="settings"),
-            ],
-            value="gallery",
-            color="blue",
-            orientation="horizontal",
-            variant="default"
-        )
+        # dmc.Tabs(
+        #     [
+        #         dmc.TabsList(
+        #             position="left",
+        #             grow=False,
+        #             children=[
+        #                 dmc.TabsTab("Meteomanz.com", value="gallery"),
+        #                 dmc.TabsTab("Messages", value="messages"),
+        #                 dmc.TabsTab("Settings", value="settings"),
+        #             ]
+        #         ),
+        #         dmc.TabsPanel("Gallery tab content", className="py-3 px-1", value="gallery"),
+        #         dmc.TabsPanel("Messages tab content", className="py-3 px-1", value="messages"),
+        #         dmc.TabsPanel("Settings tab content", className="py-3 px-1", value="settings"),
+        #     ],
+        #     value="gallery",
+        #     color="blue",
+        #     orientation="horizontal",
+        #     variant="default"
+        # )
     ]
 )
