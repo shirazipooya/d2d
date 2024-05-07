@@ -10,6 +10,7 @@ dash.register_page(
     __name__,
     title='Download',
     name='Download',
+    path='/download',
 )
 
 
