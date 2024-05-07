@@ -4,12 +4,48 @@ import dash_bootstrap_components as dbc
 from src.pages import HOME_PAGE_URL, DOWNLOAD_PAGE_URL
 
 
+sidebar_header = dbc.Row(
+    [
+        dbc.Col(html.H2("Sidebar", className="display-4")),
+        dbc.Col(
+            [
+                html.Button(
+                    # use the Bootstrap navbar-toggler classes to style
+                    html.Span(className="navbar-toggler-icon"),
+                    className="navbar-toggler",
+                    # the navbar-toggler classes don't set color
+                    style={
+                        "color": "rgba(0,0,0,.5)",
+                        "border-color": "rgba(0,0,0,.1)",
+                    },
+                    id="navbar-toggle",
+                ),
+                html.Button(
+                    # use the Bootstrap navbar-toggler classes to style
+                    html.Span(className="navbar-toggler-icon"),
+                    className="navbar-toggler",
+                    # the navbar-toggler classes don't set color
+                    style={
+                        "color": "rgba(0,0,0,.5)",
+                        "border-color": "rgba(0,0,0,.1)",
+                    },
+                    id="sidebar-toggle",
+                ),
+            ],
+            # the column containing the toggle will be only as wide as the
+            # toggle, resulting in the toggle being right aligned
+            width="auto",
+            # vertically align the toggle in the center
+            align="center",
+        ),
+    ]
+)
+
 
 
 def sidebar():
     return html.Nav(
-        id='sidebar',
-        className='active',
+        className='sidebar active',
         children=[
             html.Div(
                 className="sidebar-header",
