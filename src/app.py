@@ -1,6 +1,6 @@
 import dash
 from flask import Flask
-from dash import Input, Output, State, html
+from dash import Input, Output, State, html, dcc
 import dash_bootstrap_components as dbc
 
 
@@ -94,6 +94,8 @@ sidebar = html.Div(
 
 app.layout = html.Div(
     children=[
+        dcc.Store(id="store", data={}),
+        dcc.Interval(id='interval', interval=1 * 1000, n_intervals=0),
         sidebar,
         dash.page_container
     ],
