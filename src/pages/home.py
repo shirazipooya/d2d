@@ -7,6 +7,7 @@ import plotly.express as px
 from dash import Dash, dcc, html, Input, Output, callback
 import dash_bootstrap_components as dbc
 import dash
+import jalali
 
 sys.path.append("..")
 
@@ -48,7 +49,7 @@ thread = threading.Thread(
 thread.start()
 
 
-jumbotron_1 = html.Div(id='', className='p-1 m-1 bg-body-secondary rounded-3', children=[
+jumbotron_1 = html.Div(id='', className='h-100 p-1 m-1', style={"background-color": "#F5F5F5"}, children=[
     dbc.Container(id='jumbotron', className='py-2 border-top border-success border-5', fluid=True, children=[
         html.H1(id='connected_status', className='display-3 fw-bolder',
                 children="Disconnected"),
@@ -64,43 +65,43 @@ jumbotron_1 = html.Div(id='', className='p-1 m-1 bg-body-secondary rounded-3', c
 ])
 
 
-cal = html.Div(id='', className='row justify-content-center', children=[
+cal = html.Div(id='', className='h-100 p-1 m-1 justify-content-center ', children=[
     html.Div(id='', className='box', children=[
         html.Div(id='', className='calendar', children=[
             html.Div(id='', className='year', children=[
                 html.Div(id='', className='previous', children=[
-                    html.P(id='', className='prevYear', children=[])                    
+                    html.P(id='prevYear', className='', children=[])                    
                 ]),
                 html.Div(id='', className='current', children=[
-                    html.P(id='', className='currentYear', children=[]),
-                    html.Span(id='', className='', children="Year")                   
+                    html.P(id='currentYear', className='', children=[]),
+                    html.Span(id='currentYearJ', className='', children=[])                   
                 ]),
                 html.Div(id='', className='next', children=[
-                    html.P(id='', className='nextYear', children=[])                    
+                    html.P(id='nextYear', className='', children=[])                    
                 ]),
             ]),
             html.Div(id='', className='month', children=[
                 html.Div(id='', className='previous', children=[
-                    html.P(id='', className='prevMonth', children=[])                    
+                    html.P(id='prevMonth', className='', children=[])                    
                 ]),
                 html.Div(id='', className='current', children=[
-                    html.P(id='', className='currentMonth', children=[]),
-                    html.Span(id='', className='', children="Month")                   
+                    html.P(id='currentMonth', className='', children=[]),
+                    html.Span(id='currentMonthJ', className='', children=[])                   
                 ]),
                 html.Div(id='', className='next', children=[
-                    html.P(id='', className='nextMonth', children=[])                    
+                    html.P(id='nextMonth', className='', children=[])                    
                 ]),
             ]),
             html.Div(id='', className='day', children=[
                 html.Div(id='', className='previous', children=[
-                    html.P(id='', className='prevDay', children=[])                    
+                    html.P(id='prevDay', className='', children=[])                    
                 ]),
                 html.Div(id='', className='current', children=[
-                    html.P(id='', className='currentDay', children=[]),
-                    html.Span(id='', className='', children="Day")                   
+                    html.P(id='currentDay', className='', children=[]),
+                    html.Span(id='currentDayJ', className='', children=[])                   
                 ]),
                 html.Div(id='', className='next', children=[
-                    html.P(id='', className='nextDay', children=[])                    
+                    html.P(id='nextDay', className='', children=[])                    
                 ]),
             ])
         ])        
@@ -111,11 +112,11 @@ cal = html.Div(id='', className='row justify-content-center', children=[
 layout = html.Div(
     id="page-content",
     children=[
-        html.Div(id='', className='row', children=[
-            html.Div(id='', className='col-sm-12 col-md-12 col-lg-6 p-1', children=[
+        html.Div(id='', className='row w-100', children=[
+            html.Div(id='', className='col-sm-12 col-md-12 col-lg-4 p-1', children=[
                 jumbotron_1
             ]),
-            html.Div(id='', className='col-sm-12 col-md-12 col-lg-6 p-1', children=[
+            html.Div(id='', className='col-sm-12 col-md-12 col-lg-4 p-1', children=[
                 cal
             ]),
         ]),
@@ -133,10 +134,46 @@ layout = html.Div(
 def update_connection_status(n):
     return [
         'Connected!' if connected else 'Disconnected!',
-        'display-3 fw-bolder text-success' if connected else 'display-3 fw-bolder text-danger',
+        'display-5 fw-bolder text-success' if connected else 'display-5 fw-bolder text-danger',
         'py-2 border-top border-success border-5' if connected else 'py-2 border-top border-danger border-5',
         datetime.datetime.now().strftime("%H:%M:%S")
     ]
+
+@callback(
+    Output("prevYear", "children"),
+    Output("currentYear", "children"),
+    Output("nextYear", "children"),
+    Output("prevMonth", "children"),
+    Output("currentMonth", "children"),
+    Output("nextMonth", "children"),
+    Output("prevDay", "children"),
+    Output("currentDay", "children"),
+    Output("nextDay", "children"),
+    Output("currentYearJ", "children"),
+    Output("currentMonthJ", "children"),
+    Output("currentDayJ", "children"),
+    Input("interval", "n_intervals"),
+)
+def update_calendar(n):
+    today_date = datetime.datetime.now()
+    today_date_j = jalali.Gregorian(f'{today_date.year},{today_date.month},{today_date.day}').persian_tuple()
+    return [
+        today_date.year - 1,
+        today_date.year,
+        today_date.year + 1,
+        today_date.month - 1,
+        today_date.month,
+        today_date.month + 1,
+        today_date.day - 1,
+        today_date.day,
+        today_date.day + 1,
+        today_date_j[0],
+        today_date_j[1],
+        today_date_j[2],
+    ]
+
+
+
 
 
 # @callback(Output("heatmaps-graph", "figure"), Input("heatmaps-medals", "value"))
