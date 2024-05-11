@@ -49,7 +49,7 @@ thread = threading.Thread(
 thread.start()
 
 
-jumbotron_1 = html.Div(id='', className='h-100 p-1 m-1', style={"background-color": "#F5F5F5"}, children=[
+jumbotron_1 = html.Div(id='', className='p-1 m-1', style={"background-color": "#F5F5F5"}, children=[
     dbc.Container(id='jumbotron', className='py-2 border-top border-success border-5', fluid=True, children=[
         html.H1(id='connected_status', className='display-3 fw-bolder',
                 children="Disconnected"),
@@ -65,7 +65,8 @@ jumbotron_1 = html.Div(id='', className='h-100 p-1 m-1', style={"background-colo
 ])
 
 
-cal = html.Div(id='', className='h-100 p-1 m-1 justify-content-center ', children=[
+
+cal = html.Div(id='', className='p-1 m-1 justify-content-center ', children=[
     html.Div(id='', className='box', children=[
         html.Div(id='', className='calendar', children=[
             html.Div(id='', className='year', children=[
@@ -109,6 +110,23 @@ cal = html.Div(id='', className='h-100 p-1 m-1 justify-content-center ', childre
 ])
 
 
+
+todo = html.Div(id='', className='p-1 m-1', style={"background-color": "#F5F5F5"}, children=[
+    dbc.Container(id='todo', className='py-2 border-top border-warning border-5', fluid=True, children=[
+        dbc.Row(
+            [
+                dbc.Col(
+                    dbc.Input(type="password", placeholder="Enter password"),
+                    className="me-1",
+                ),
+                dbc.Col(dbc.Button("Submit", color="primary"), width="auto"),
+            ],
+            className="my-2"
+        ),
+    ])
+])
+
+
 layout = html.Div(
     id="page-content",
     children=[
@@ -118,6 +136,9 @@ layout = html.Div(
             ]),
             html.Div(id='', className='col-sm-12 col-md-12 col-lg-4 p-1', children=[
                 cal
+            ]),
+            html.Div(id='', className='col-sm-12 col-md-12 col-lg-4 p-1', children=[
+                todo
             ]),
         ]),
     ]
